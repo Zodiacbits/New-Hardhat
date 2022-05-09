@@ -1,19 +1,19 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Result", function () {
+describe("Resultant", function () {
   it("Should return the new result once total value derived", async function () {
-    const Result = await ethers.getContractFactory("Result");
-    const result = await result.deploy("");
+    const Result = await ethers.getContractFactory("Resultant");
+    const result = await Result.deploy(0);
     await result.deployed();
 
-    expect(await resultant.result()).to.equal("uint256");
+    let currentResult = await result.getResult();
+    console.log( "zodiacs current result:", currentResult);
 
-    const setResultTx = await resultant.setResult("uint256");
+    await result.addNumbers( 5, 5);
 
-    // wait until the transaction is mined
-    await setResultTx.wait();
+    currentResult = await result.getResult();
+    console.log( "zodiacs current result:", currentResult);
 
-    expect(await resultant.result()).to.equal("uint256");
   });
 });
